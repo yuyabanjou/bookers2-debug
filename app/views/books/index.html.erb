@@ -31,11 +31,11 @@
 					<th>Title</th>
 					<th>Opinion</th>
 					<th colspan="3"></th>
-				</tr>
 			</thead>
 
 			<tbody>
 				<% @books.each do |book| %>
+				<% book_id = book.id %>
 				<tr>
 					<td>
 						<%= link_to(book.user) do %>
@@ -44,6 +44,17 @@
 					</td>
 					<td><%= link_to book.title, book, class: "book_#{book.id}" %></td>
 					<td><%= book.body %></td>
+					<td>
+					<% if book.favorited_by?(current_user) %>
+						<% book_favorite = Favorite.where(user_id:current_user.id,book_id: book_id).first %>
+						<%= link_to("favorites/#{@book.id}/destroy", {method: "post"}) do %>
+							<span class="fa fa-heart"></span>
+						<% end %>
+						<p><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i><%=link_to book.favorites.count, book_favorite_path(book_id,book_favorite.id), method: :delete %></p>
+					<% else %>
+						<p><i class="fa fa-heart-o" aria-hidden="true"></i><%=link_to book.favorites.count, book_favorites_path(book.id), method: :post %></p>
+					<% end %>
+					</td>
 				</tr>
 				<% end %>
 			</tbody>
