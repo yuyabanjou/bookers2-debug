@@ -3,7 +3,7 @@ class Book < ApplicationRecord
 
 	# いいね機能
 	has_many :favorites
-	has_many :post_comments, dependent: :destroy
+	has_many :book_comments, dependent: :destroy
 
 	#バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
 	#presence trueは空欄の場合を意味する。

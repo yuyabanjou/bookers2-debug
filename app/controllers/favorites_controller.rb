@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
 		favorite.save
 		@book = Book.find_by(id: favorite.book_id)
 		@favorite_count = Favorite.where(book_id: params[:book_id]).count
-
 		if params[:iine] == "index"
 			redirect_to books_path
 		else params[:iine] == "show"
@@ -18,7 +17,7 @@ class FavoritesController < ApplicationController
 		@book = Book.find_by(id: favorite.book_id)
 		favorite.destroy
 		@favorite_count = Favorite.where(book_id: params[:book_id]).count
-
+		# binding.pry
 		if params[:iine] == "index"
 			redirect_to books_path
 		else params[:iine] == "show"
