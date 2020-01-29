@@ -4,11 +4,14 @@ class BooksController < ApplicationController
   def show
   	@book = Book.find(params[:id])
     @book_new = Book.new
+    @favorite_count = Favorite.where(book_id: params[:book_id]).count
+    @book_comment = BookComment.new
   end
 
   def index
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
     @book = Book.new
+    render :index
   end
 
   def create

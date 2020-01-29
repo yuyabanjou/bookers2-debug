@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,:validatable
 
   has_many :books, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
+
+  # いいね機能
+  has_many :favorites
 
   attachment :profile_image, destroy: false
 
