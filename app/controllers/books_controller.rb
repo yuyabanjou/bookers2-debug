@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   	@book = Book.find(params[:id])
     @book_new = Book.new
     @favorite_count = Favorite.where(book_id: params[:book_id]).count
+    @book_comment = BookComment.new
   end
 
   def index
