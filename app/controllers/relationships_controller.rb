@@ -1,8 +1,11 @@
 class RelationshipsController < ApplicationController
 
-	def index
-		@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
-		@user = current_user
+	def show_follow
+		@user = User.find(params[:id])
+	end
+
+	def show_follower
+		@user = User.find(params[:id])
 	end
 
 	def follow
