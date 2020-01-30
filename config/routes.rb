@@ -12,4 +12,10 @@ Rails.application.routes.draw do
 
   resources :users,only: [:show,:index,:edit,:update]
 
+  get 'relationship/show_follow/:id' => 'relationships#show_follow', as: 'show_follow'
+  get 'relationship/show_follower/:id' => 'relationships#show_follower', as: 'show_follower'
+
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+
 end
